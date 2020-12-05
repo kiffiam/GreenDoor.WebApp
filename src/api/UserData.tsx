@@ -3,8 +3,6 @@ import axios from "axios";
 import { LoginModel } from "../model/User/LoginModel";
 import { RegisterModel } from "../model/User/RegisterModel"
 import { Token, User } from "../model/User/User";
-import setAuthHeaderToken from '../auth/AuthHandler';
-
 
 const baseURL = "https://localhost:44326/"
 

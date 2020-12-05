@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 
 export interface Props {
     room: RoomListModel
-    //currentUser: User;
     onDeleteClicked: (id: number) => void;
 }
 

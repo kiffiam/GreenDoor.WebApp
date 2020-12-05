@@ -2,11 +2,12 @@ import * as React from 'react';
 import { ReservationDetailedModel } from '../../model/Reservation/ReservationDetailedModel';
 import { getAllReservationsAction } from "../../redux/Reservations/ReservationActions";
 import ReservationContainer from "../../containers/ReservationsContainer";
-import { deleteReservation, getUserReservations, unBookReservations } from '../../api/ReservationData';
+import { deleteReservation, bookReservations, unBookReservations } from '../../api/ReservationData';
 import { connect } from "react-redux";
 import { ApplicationState } from "../../redux/Store";
 import { Container, Row } from 'reactstrap';
 import { User, UserRoles } from '../../model/User/User';
+
 
 export interface Props {
     reservations: ReservationDetailedModel[];
@@ -20,10 +21,13 @@ export interface State {
 
 class Reservations extends React.Component<Props, State> {
 
-    //private handleUnBookClick = async (userId: string, id: number) => {
-    private handleUnBookClick = async (id: number) => {
-        //await unBookReservations(userId, id);
-        await unBookReservations(id);
+    private handleUnBookClick = async (idp: number) => {
+        if (this.props.reservations.find(({ id }) => id === idp)?.isBooked) {
+            await unBookReservations(idp);
+        } else {
+            await bookReservations(idp);
+        }
+
         this.props.getAllReservationsAction();
     }
 
@@ -41,7 +45,7 @@ class Reservations extends React.Component<Props, State> {
             return (
                 <Container>
                     <Row>
-                        <h1>You have to be logged in as an admin to see the reservations!</h1>
+                        <h1>You are not supposed to be here!</h1>
                     </Row>
                 </Container>
             );

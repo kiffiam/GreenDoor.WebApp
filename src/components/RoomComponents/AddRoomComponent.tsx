@@ -9,7 +9,6 @@ import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router'
 
 export interface Props {
-    //room: RoomDetailedModel;
     onSubmitRoom: (room: RoomDetailedModel) => Promise<RoomDetailedModel>;
 }
 

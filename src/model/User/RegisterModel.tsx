@@ -4,7 +4,6 @@ export interface RegisterModel {
     firstName: string;
     lastName: string;
     phoneNumber: string;
-    birthdate: string;
     password: string;
     confirmPassword: string;
 

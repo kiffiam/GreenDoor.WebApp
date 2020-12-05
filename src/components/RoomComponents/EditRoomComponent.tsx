@@ -50,7 +50,6 @@ class EditRoomComponent extends React.Component<Props, State> {
             room: {
                 ...state.room,
                 difficulty: parseInt(e.target.value, 10)
-                //difficulty: e.target.valueAsNumber
             }
         }));
     }

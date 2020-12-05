@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { RouteComponentProps } from "react-router-dom";
 import { connect } from "react-redux";
-import reactsrap from "reactstrap";
 import { ApplicationState } from "../redux/Store";
 import FeedPostView from "../components/FeedPostComponents/FeedPostView";
 import { FeedPost } from '../model/Feedpost/FeedPost';
 import { getFeedPosts } from "../redux/FeedPosts/FeedPostsActions";
 import { deleteFeedPost } from '../api/FeedPostData';
+import { User } from '../model/User/User';
 
 
 export interface Props {
     feedPosts: FeedPost[]
+    currentUser: User;
     handleDelete: (id: number) => void;
     getFeedPosts: typeof getFeedPosts
 }
@@ -37,6 +37,7 @@ class FeedPostContainer extends React.Component<Props, State> {
             <div className="center">
                 {this.props.feedPosts.map(f => (
                     <FeedPostView key={f.id}
+                        currentUser={this.props.currentUser}
                         onDeleteClicked={this.handleDelete}
                         feedPost={f}
                     />
@@ -48,7 +49,8 @@ class FeedPostContainer extends React.Component<Props, State> {
 
 const mapStateToProps = (store: ApplicationState) => {
     return {
-        feedPosts: store.feedPosts.feedPosts
+        feedPosts: store.feedPosts.feedPosts,
+        currentUser: store.users.currentUser
     };
 };
 

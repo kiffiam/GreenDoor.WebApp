@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Col, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Col, Container, Form, FormFeedback, FormGroup, FormText, Input, Label } from 'reactstrap';
 import { RegisterModel } from '../../model/User/RegisterModel';
 
 export interface Props {
@@ -21,7 +21,6 @@ class RegisterComponent extends React.Component<Props, State> {
                 firstName: "",
                 lastName: "",
                 phoneNumber: "",
-                birthdate: "1999-11-11",
                 password: "",
                 confirmPassword: "",
             }
@@ -112,7 +111,8 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>E-mail address:</Label>
                             <Col sm={4}>
                                 <Input
-                                    placeholder="E-mail address"
+                                    required
+                                    placeholder="example@example.com"
                                     onChange={e => this.handleEmailChange(e)}
                                     type="email" />
                             </Col>
@@ -121,6 +121,7 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>Username:</Label>
                             <Col sm={4}>
                                 <Input
+                                    required
                                     placeholder="Username"
                                     onChange={e => this.handleUserNameChange(e)}
                                     type="text" />
@@ -130,6 +131,7 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>First name:</Label>
                             <Col sm={4}>
                                 <Input
+                                    required
                                     placeholder="First name"
                                     onChange={e => this.handleFirstNameChange(e)}
                                     type="text" />
@@ -139,6 +141,7 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>Last name:</Label>
                             <Col sm={4}>
                                 <Input
+                                    required
                                     placeholder="Last name"
                                     onChange={e => this.handleLastNameChange(e)}
                                     type="text" />
@@ -148,7 +151,9 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>Phone number:</Label>
                             <Col sm={4}>
                                 <Input
+                                    required
                                     placeholder="+36123456789"
+                                    pattern="^[+]{1}(?=.*[0-9]).{8,}$"
                                     onChange={e => this.handlePhoneChange(e)}
                                     type="text" />
                             </Col>
@@ -157,9 +162,16 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Label sm={2}>Password:</Label>
                             <Col sm={4}>
                                 <Input
+                                    required
                                     type="password"
+                                    name="password"
+                                    id="password"
+                                    value={this.state.registerModel.password}
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,}.*$"
                                     onChange={e => this.handlePasswordChange(e)}>
                                 </Input>
+                                <FormFeedback >Password is not fit for the requirements!</FormFeedback>
+                                <FormText>Password must be 8 characters long and cointain 1 uppercase, 1 lowercase, 1 number and 1 special characters!</FormText>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -167,8 +179,12 @@ class RegisterComponent extends React.Component<Props, State> {
                             <Col sm={4}>
                                 <Input
                                     type="password"
+                                    required
+                                    invalid={this.state.registerModel.password !== this.state.registerModel.confirmPassword}
+                                    id="confirm_password"
                                     onChange={e => this.handleConfirmPasswordChange(e)}>
                                 </Input>
+                                <FormFeedback invalid>Passwords don't match!</FormFeedback>
                             </Col>
                         </FormGroup>
                         <Button

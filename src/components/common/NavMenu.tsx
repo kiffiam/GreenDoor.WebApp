@@ -43,9 +43,11 @@ class NavMenu extends React.PureComponent<Prop, { isOpen: boolean }> {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/Rooms">Rooms</NavLink>
                                 </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/MyReservations">My Reservations</NavLink>
-                                </NavItem>
+                                {this.props.currentUser.role !== UserRoles.Admin &&
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/MyReservations">My Reservations</NavLink>
+                                    </NavItem>
+                                }
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/Reviews">Reviews</NavLink>
                                 </NavItem>

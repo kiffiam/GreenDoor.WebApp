@@ -22,7 +22,9 @@ class ReservationDetailedRow extends React.Component<Props> {
         return (
             <Button className="btn btn-md col-auto m-1"
                 color={this.props.reservation.isBooked ? "danger" : "success"}
-                onClick={() => this.props.onUnBookClicked(this.props.reservation.id)}
+                onClick={
+                    () => this.props.onUnBookClicked(this.props.reservation.id)
+                }
             >
                 {this.props.reservation.isBooked ? "Unbook" : "Book"}
             </Button>
@@ -60,6 +62,7 @@ class ReservationDetailedRow extends React.Component<Props> {
                     <Col >{this.props.reservation.userName ? this.props.reservation.userName : "N/A"}</Col>
                     <Col >{this.props.reservation.userPhoneNumber ? this.props.reservation.userPhoneNumber : "N/A"}</Col>
                     <Col ><this.DeleteButton /></Col>
+                    <Col><this.BookButton /></Col>
                 </Row>
             );
         }
