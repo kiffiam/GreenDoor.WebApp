@@ -1,6 +1,6 @@
 import { RoomListModel } from "../../model/Room/RoomListModel";
 import * as React from 'react';
-import { Button, Card, Row } from "reactstrap";
+import { Button, Card, CardBody, CardText, CardTitle, Row } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
 export interface Props {
@@ -65,15 +65,15 @@ class AdminRoomCard extends React.Component<Props, State> {
         return (
             <div className="col-sm-4 col-md-3 col-lg-3">
                 <div className="card m-2">
-                    <div className="card-body">
-                        <h5 className="card-title">{this.props.room.name}</h5>
-                        <p className="card-text">Time: {this.props.room.minTime} - {this.props.room.maxTime}</p>
-                        <p className="card-text">Difficulty: {this.props.room.difficulty}</p>
+                    <CardBody >
+                        <CardTitle className="h5">{this.props.room.name}</CardTitle>
+                        <CardText >Time: {this.props.room.minTime} - {this.props.room.maxTime}</CardText>
+                        <CardText >Difficulty: {this.props.room.difficulty}</CardText>
                         <Row><this.DetailsButton /></Row>
                         <Row><this.NewReservationsButton /></Row>
                         <Row><this.EditButton /></Row>
                         <Row><this.DeleteButton /></Row>
-                    </div>
+                    </CardBody>
                 </div>
             </div>
         );

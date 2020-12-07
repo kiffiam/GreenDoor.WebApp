@@ -20,7 +20,7 @@ class ReviewContainer extends React.Component<Props, State> {
 
     render() {
         return (
-            <Container className="justify-content-center">
+            <Container className="justify-content-center ">
                 {this.props.reviews.map(rev => (
                     <ReviewComponent key={rev.id}
                         review={rev} />

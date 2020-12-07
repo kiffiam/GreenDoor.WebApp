@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { ApplicationState } from "../redux/Store";
 import { RouteComponentProps } from 'react-router-dom';
 import ReservationListRow from "../components/ReservationComponents/ReservationListRow";
-import { Col, Container, Label, Row, Alert } from 'reactstrap';
+import { Col, Container, Label, Row, Alert, Card, CardBody, CardText } from 'reactstrap';
 import { bookReservations } from '../api/ReservationData';
 import { User, UserRoles } from '../model/User/User';
 import { ReviewViewModel } from '../model/Review/ReviewViewModel';
@@ -58,19 +58,46 @@ class RoomDetailedContainer extends React.Component<Props, State> {
                         <Col className="col-12"></Col>
                         <Col className="col-8">
                             <Row>
-                                <h1>{this.props.room.name}</h1>
+                                <Col className="col-12"></Col>
+                                <Col className="col-4">
+                                    <Row>
+                                        <Label className="h1">{this.props.room.name}</Label>
+                                    </Row>
+                                    <Row>
+                                        <Label className="h5 mt-3">Difficulty: {this.props.room.difficulty}</Label>
+                                    </Row>
+                                    <Row>
+                                        <Label className="h6 mt-3">
+                                            Approx. playtime:
+                                        </Label>
+                                        <p>{this.props.room.minTime} - {this.props.room.maxTime}</p>
+                                    </Row>
+                                    <Row>
+                                        <Label className="h6 mt-3">
+                                            Record escape from this room:
+                                        </Label>
+                                        <p>{this.props.room.recordTime}</p>
+                                    </Row>
+
+                                </Col>
+                                <Col className="col-8">
+                                    <Card>
+                                        <CardBody>
+                                            <CardText className="p">
+                                                {this.props.room.description}
+                                            </CardText>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
                             </Row>
-                            <Row>
-                                <h3>Difficulty: {this.props.room.difficulty}</h3>
-                            </Row>
-                            <Label className="h4">Available times:</Label>
+                            <Label className="h5 mt-3">Available times:</Label>
 
                             {this.props.currentUser.role === UserRoles.User &&
                                 <Alert color="success"
                                     isOpen={this.state.alertVisible}
                                     toggle={() => this.setState({ alertVisible: false })}>
                                     You have booked!
-                                </Alert>
+                                        </Alert>
                             }
 
                             {this.props.currentUser.role === UserRoles.Anon &&
@@ -78,18 +105,17 @@ class RoomDetailedContainer extends React.Component<Props, State> {
                                     isOpen={this.state.alertVisible}
                                     toggle={() => this.setState({ alertVisible: false })}>
                                     Login to book this time!
-                                </Alert>
+                                        </Alert>
                             }
-
                             {this.props.room.availableReservations.map(res => (
                                 <ReservationListRow key={res.id}
                                     reservation={res}
                                     onBookClick={() => this.handleOnBookClick(res.id)}
                                 />
                             ))}
-
                         </Col>
                         <Col className="col-4">
+                            <div className="text-center"><Label className=" h5 ">Reviews about room</Label></div>
                             <ReviewContainer key={this.props.room.id}
                                 reviews={this.props.reviewsByRoom} />
                         </Col>

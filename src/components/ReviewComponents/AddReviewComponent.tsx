@@ -77,7 +77,8 @@ class AddReviewComponent extends React.Component<Props, State> {
                                 value={this.state.review.reviewText}
                                 placeholder="Your review"
                                 onChange={e => this.handleReviewTextChange(e)}
-                                maxLength={250}
+                                maxLength={1000}
+                                valid={this.state.review.reviewText.length >= 5}
                                 type="textarea" />
                         </Col>
                         <Label sm={1}>Point:</Label>

@@ -14,13 +14,9 @@ export interface Props {
     handleDelete: (id: number) => void;
     getFeedPosts: typeof getFeedPosts
 }
-
 export interface State {
 
 }
-
-
-
 class FeedPostContainer extends React.Component<Props, State> {
 
     private handleDelete = async (id: number) => {

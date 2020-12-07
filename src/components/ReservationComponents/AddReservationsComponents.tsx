@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ReservationDetailedModel } from "../../model/Reservation/ReservationDetailedModel";
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col, Container } from "reactstrap";
 import { RoomDetailedModel } from '../../model/Room/RoomDetailedModel';
 import Datetime from 'react-datetime';
 import moment, { Moment, MomentInput } from "moment";
 import "react-datetime/css/react-datetime.css"
 import 'moment/locale/hu';
+import { Redirect } from 'react-router-dom';
 
 
 export interface Props {
@@ -18,6 +18,7 @@ export interface State {
     fromDateTime?: Date;
     roomId: number;
     roomName: string;
+    redirect: boolean;
 }
 
 class AddReservationsComponent extends React.Component<Props, State> {
@@ -27,7 +28,8 @@ class AddReservationsComponent extends React.Component<Props, State> {
             quantity: 0,
             fromDateTime: new Date(),
             roomId: this.props.room.id,
-            roomName: this.props.room.name
+            roomName: this.props.room.name,
+            redirect: false
         }
     }
 
@@ -36,6 +38,13 @@ class AddReservationsComponent extends React.Component<Props, State> {
         e.preventDefault();
         var fromDateTimestring = moment(this.state.fromDateTime).format('YYYY-MM-DDTHH:mm:ss');
         var result = await this.props.onSubmitReservations(this.state.roomId, this.state.quantity, fromDateTimestring);
+
+        if (result !== null) {
+            this.setState(state => ({
+                ...state,
+                redirect: true
+            }));
+        }
 
         return false;
     }
@@ -93,6 +102,7 @@ class AddReservationsComponent extends React.Component<Props, State> {
                         color="primary"
                     >Add new reservations
                     </Button>
+                    {this.state.redirect && <Redirect to="/Admin/Reservations" />}
                 </Form>
             </Container >
         );

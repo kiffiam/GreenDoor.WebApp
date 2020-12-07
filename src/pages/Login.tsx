@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { ApplicationState } from '../redux/Store';
 import { User } from '../model/User/User';
 import { Redirect } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 export interface Props {
     currentUser?: User;
@@ -37,12 +38,12 @@ class Login extends React.Component<Props, State> {
 
     render() {
         return (
-            <div>
+            <Container >
                 <LoginComponent onLoginClick={this.handleLogin} />
                 {this.props.currentUser?.email !== "" &&
                     <Redirect to="/" />}
 
-            </div>
+            </Container>
         );
     }
 }

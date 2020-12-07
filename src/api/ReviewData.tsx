@@ -30,14 +30,6 @@ export const addReview = async (review: ReviewModel, roomId: number): Promise<Re
     return response.data;
 };
 
-/*export const updateReview = async (id: number, Review: Review): Promise<Review> => {
-    var response = await axios.put<Review>(
-        baseURL + "api/Review/" + id,
-        Review
-    );
-    return response.data;
-};*/
-
 //TODO: nem kell
 export const deleteReview = async (id: number): Promise<boolean> => {
     var response = await axios.delete(

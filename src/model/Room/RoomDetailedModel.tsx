@@ -8,7 +8,6 @@ export interface RoomDetailedModel {
     recordTime: string
     intervalTime: string;
     difficulty: number
-    //picutre
     description: string
     availableReservations: ReservationShortModel[]
 }
