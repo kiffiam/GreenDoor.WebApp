@@ -6,7 +6,7 @@ export class User {
     lastName: string = ""
     userName: string = ""
     email: string = ""
-    phone: string = ""
+    phoneNumber: string = ""
     role: UserRoles = UserRoles.Anon
 }
 

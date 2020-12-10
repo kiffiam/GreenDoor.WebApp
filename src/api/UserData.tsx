@@ -36,3 +36,17 @@ export const logoutUser = async (): Promise<void> => {
     );
     return;
 };
+
+export const getAllUsers = async (): Promise<User[]> => {
+    var response = await axios.get<User[]>(
+        baseURL + "api/Users/"
+    );
+    return response.data;
+};
+
+export const deleteUser = async (id: string): Promise<boolean> => {
+    var response = await axios.delete<boolean>(
+        baseURL + "api/Users/" + id
+    );
+    return response.data;
+};

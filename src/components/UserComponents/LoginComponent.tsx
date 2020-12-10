@@ -28,7 +28,7 @@ class LoginComponent extends React.Component<Props, State> {
 
         e.preventDefault();
 
-        let result = await this.props.onLoginClick({ email: this.state.email!, password: this.state.password! });
+        var result = await this.props.onLoginClick({ email: this.state.email!, password: this.state.password! });
         /*if (result == null) {
             this.setState({
                 ...this.state,

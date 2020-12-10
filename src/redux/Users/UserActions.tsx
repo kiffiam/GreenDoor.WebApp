@@ -15,10 +15,10 @@ import {
     UserActionTypes,
     UserLogoutAction
 } from "./UserActionTypes";
-import { loginUser, logoutUser, registerUser } from '../../api/UserData';
+import { loginUser, logoutUser, registerUser, getAllUsers } from '../../api/UserData';
 
 
-/*export const getUsers: ActionCreator<ThunkAction<Promise<AnyAction>, UserState, null, UserGetAllAction>> = () => {
+export const getUsers: ActionCreator<ThunkAction<Promise<AnyAction>, UserState, null, UserGetAllAction>> = () => {
     return async (dispatch: Dispatch) => {
         const users = await getAllUsers();
         return dispatch({
@@ -26,7 +26,7 @@ import { loginUser, logoutUser, registerUser } from '../../api/UserData';
             type: UserActionTypes.GETALL
         });
     };
-};*/
+};
 
 export const logOutAction: ActionCreator<ThunkAction<Promise<AnyAction>, UserState, null, UserLogoutAction>>
     = () => {

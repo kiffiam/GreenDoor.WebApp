@@ -34,7 +34,7 @@ class AddFeedPost extends React.Component<Props, State> {
                         <h1>You have to be an admin to add posts!</h1>
                     </Row>
                 </Container>
-            );
+            )
         } else {
             return (
                 <Container>

@@ -4,7 +4,7 @@ import { deleteRoom } from "../api/RoomData";
 import { getRooms, deleteRoomAction } from "../redux/Rooms/RoomsActions";
 import { RouteComponentProps } from "react-router-dom";
 import { connect } from "react-redux";
-import { Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import { RoomListModel } from '../model/Room/RoomListModel';
 import { ApplicationState } from "../redux/Store";
 import { User } from '../model/User/User';
@@ -37,14 +37,16 @@ class RoomList extends React.Component<Props, State> {
 
     render() {
         return (
-            <Row className="row m-0">
-                {this.props.rooms.map(rm => (
-                    <RoomCard key={rm.id}
-                        room={rm}
-                        onDeleteClicked={this.handleDeleteClick}
-                    />
-                ))}
-            </Row>
+            <Container>
+                <Row className="row m-0">
+                    {this.props.rooms.map(rm => (
+                        <RoomCard key={rm.id}
+                            room={rm}
+                            onDeleteClicked={this.handleDeleteClick}
+                        />
+                    ))}
+                </Row>
+            </Container>
         );
     }
 }

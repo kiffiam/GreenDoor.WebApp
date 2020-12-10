@@ -20,24 +20,7 @@ export const getUserReservations = async (): Promise<ReservationDetailedModel[]>
     return response.data;
 };
 
-/*export const bookReservations = async (userId: string, id: number): Promise<boolean> => {
-    var response = await axios.put<boolean>(
-        baseURL + "api/Reservations/Book/" + id,
-        JSON.stringify(userId),
-        { headers: { 'Content-Type': 'application/json' } }
-    );
-    return response.data;
-};*/
 
-/*export const unBookReservations = async (userId: string, id: number): Promise<boolean> => {
-    var response = await axios.put(
-        baseURL + "api/Reservations/Unbook/" + id,
-        userId,
-        JSON.stringify(userId),
-        { headers: { 'Content-Type': 'application/json' } }
-    );
-    return response.data;
-};*/
 
 export const bookReservations = async (id: number): Promise<boolean> => {
     var response = await axios.put<boolean>(

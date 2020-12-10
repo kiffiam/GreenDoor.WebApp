@@ -37,6 +37,7 @@ class AddRoom extends React.Component<Props, State> {
                 <div>
                     <AddRoomComponent onSubmitRoom={this.handleAddRoomClick} />
                 </div>
+
             );
         }
 

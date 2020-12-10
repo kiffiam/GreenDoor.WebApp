@@ -41,7 +41,7 @@ class AdminRooms extends React.Component<Props, State> {
             return (
                 <Container>
                     <Row>
-                        <h1>STOP! YOU HAVE VIOLATED THE LAW!!</h1>
+                        <h1>You have to be logged in as an admin to use this function!</h1>
                     </Row>
                 </Container>
             );

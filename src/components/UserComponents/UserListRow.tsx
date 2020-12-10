@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { User } from "../../model/User/User";
-import { Button } from "reactstrap";
+import { Button, Col, Row } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import { isThisTypeNode } from 'typescript';
 
@@ -15,16 +15,6 @@ export interface State {
 
 class UserListRow extends React.Component<Props, State> {
 
-    private UserReservationsButton = withRouter(({ history }) => {
-        return (
-            <Button
-                onClick={() => { history.push('/Reservation/' + this.props.user.id); }}
-            >
-                User's reservations
-            </Button>
-        );
-    })
-
     private DeleteButton = () => (
         <Button
             className="btn btn-danger btn-md col-auto m-1"
@@ -38,15 +28,14 @@ class UserListRow extends React.Component<Props, State> {
 
     render() {
         return (
-            <div>
-                <p>{this.props.user.userName}</p>
-                <p>{this.props.user.firstName}</p>
-                <p>{this.props.user.lastName}</p>
-                <p>{this.props.user.phone}</p>
-                <p>{this.props.user.email}</p>
-                <this.DeleteButton />
-                <this.UserReservationsButton />
-            </div>
+            <Row className="p-1 m-1 align-items-center">
+                <Col >{this.props.user.userName}</Col>
+                <Col >{this.props.user.firstName}</Col>
+                <Col >{this.props.user.lastName} </Col>
+                <Col >{this.props.user.phoneNumber} </Col>
+                <Col >{this.props.user.email}</Col>
+                <Col><this.DeleteButton /></Col>
+            </Row>
         );
     }
 }
